@@ -1,0 +1,9 @@
+Package: com.ngminh.ocboost
+Name: OCBoost
+Version: 1.0.0
+Architecture: iphoneos-arm64
+Description: OCBoost performance profiles, focused-app hints, CPU benchmark, and 64-request network test.
+Maintainer: Nguyễn Minh, Nam Khang
+Author: Nguyễn Minh, Nam Khang
+Section: Tweaks
+Depends: mobilesubstrate | ellekit, preferenceloader
