@@ -1,0 +1,44 @@
+name: Build OCBoost (RootHide)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: brew install ldid dpkg
+
+      - name: Install RootHide Theos
+        env:
+          THEOS: ${{ github.workspace }}/theos
+        run: bash -c "$(curl -fsSL https://raw.githubusercontent.com/roothide/theos/master/bin/install-theos)"
+
+      - name: Build RootHide deb (arm64 + arm64e)
+        env:
+          THEOS: ${{ github.workspace }}/theos
+        run: |
+          make clean
+          make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=roothide
+          ls -lah packages/*.deb
+
+      - name: Upload deb artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OCBoost-RootHide-deb
+          path: packages/*.deb
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Attach deb to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: packages/*.deb
