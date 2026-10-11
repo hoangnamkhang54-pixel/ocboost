@@ -1,7 +1,7 @@
 # OCBoost — RootHide / arm64 + arm64e
 
 **Dev:** Nguyễn Minh, Nam Khang  
-**Package ID:** `com.ngminh.ocboost`  
+**Package ID:** `com.namkhangminhnguyen.ocboost`  
 **Version:** `1.0.0`  
 **Target:** RootHide, iOS 15+, `arm64` + `arm64e`
 
