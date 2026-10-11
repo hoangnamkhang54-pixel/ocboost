@@ -1,0 +1,63 @@
+{
+    items = (
+        {
+            cell = PSGroupCell;
+            label = "OCBoost";
+            footerText = "Quản lý cấu hình hiệu năng. Các chế độ không tự thay đổi xung CPU/GPU của iOS.";
+        },
+        {
+            cell = PSSwitchCell;
+            label = "Bật OCBoost";
+            key = "enabled";
+            default = NO;
+        },
+        {
+            cell = PSLinkListCell;
+            label = "Chế độ hiệu năng";
+            key = "mode";
+            default = "smart";
+            values = (
+                "cool",
+                "balanced",
+                "maximum",
+                "smart"
+            );
+            titles = (
+                "Mát mẻ",
+                "Cân bằng",
+                "Tối đa",
+                "Thông minh"
+            );
+        },
+        {
+            cell = PSGroupCell;
+            label = "Ứng dụng ưu tiên";
+            footerText = "Chọn tối đa 5 Bundle ID. Ở chế độ Tối đa/Thông minh, OCBoost chỉ gửi gợi ý ưu tiên hoạt động cho ứng dụng đang mở; iOS vẫn tự quản lý CPU, RAM và nhiệt độ.";
+        },
+        {
+            cell = PSButtonCell;
+            label = "Chọn ứng dụng (tối đa 5)";
+            action = "chooseFocusedApps";
+        },
+        {
+            cell = PSGroupCell;
+            label = "Benchmark";
+            footerText = "Các bài kiểm tra là phép đo tham khảo trên thiết bị hiện tại, không phải điểm chuẩn so sánh giữa mọi thiết bị.";
+        },
+        {
+            cell = PSButtonCell;
+            label = "Chạy CPU benchmark";
+            action = "runCPUBenchmark";
+        },
+        {
+            cell = PSButtonCell;
+            label = "Kiểm tra mạng (64 tác vụ song song)";
+            action = "runNetworkBenchmark";
+        },
+        {
+            cell = PSGroupCell;
+            label = "Giới thiệu";
+            footerText = "OCBoost 1.0.0\nDev: Nguyễn Minh, Nam Khang\nKhông tắt daemon hoặc tiến trình hệ thống. Không ép xung phần cứng bằng kernel.";
+        }
+    );
+}
