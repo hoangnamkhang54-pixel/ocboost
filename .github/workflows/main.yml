@@ -21,10 +21,26 @@ jobs:
           THEOS: ${{ github.workspace }}/theos
         run: bash -c "$(curl -fsSL https://raw.githubusercontent.com/roothide/theos/master/bin/install-theos)"
 
+      # Xcode's SDK omits private framework stubs; Preferences.framework is
+      # needed to link the Settings preference bundle.
+      - name: Install patched iOS 16.5 SDK
+        env:
+          THEOS: ${{ github.workspace }}/theos
+        run: |
+          set -euxo pipefail
+          mkdir -p "$THEOS/sdks"
+          curl -fL --retry 3 \
+            "https://github.com/theos/sdks/releases/download/master-146e41f/iPhoneOS16.5.sdk.tar.xz" \
+            -o /tmp/iPhoneOS16.5.sdk.tar.xz
+          tar -xJf /tmp/iPhoneOS16.5.sdk.tar.xz -C "$THEOS/sdks"
+          test -f "$THEOS/sdks/iPhoneOS16.5.sdk/System/Library/PrivateFrameworks/Preferences.framework/Preferences.tbd"
+          echo "Patched Preferences framework stub found."
+
       - name: Build RootHide deb (arm64 + arm64e)
         env:
           THEOS: ${{ github.workspace }}/theos
         run: |
+          set -euxo pipefail
           make clean
           make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=roothide
           ls -lah packages/*.deb
