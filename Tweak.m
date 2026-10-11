@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-static CFStringRef const kOCBoostDomain = CFSTR("com.ngminh.ocboost");
-static CFStringRef const kOCBoostChangedNotification = CFSTR("com.ngminh.ocboost/settingsChanged");
+static CFStringRef const kOCBoostDomain = CFSTR("com.namkhangminhnguyen.ocboost");
+static CFStringRef const kOCBoostChangedNotification = CFSTR("com.namkhangminhnguyen.ocboost/settingsChanged");
 static id gOCBoostActivity = nil;
 static NSString *gOCBoostBundleID = nil;
 

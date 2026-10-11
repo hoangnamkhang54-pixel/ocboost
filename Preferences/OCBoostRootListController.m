@@ -6,8 +6,8 @@
 #import <math.h>
 #import <stdint.h>
 
-static NSString * const kOCBoostDomain = @"com.ngminh.ocboost";
-static NSString * const kOCBoostChangedNotification = @"com.ngminh.ocboost/settingsChanged";
+static NSString * const kOCBoostDomain = @"com.namkhangminhnguyen.ocboost";
+static NSString * const kOCBoostChangedNotification = @"com.namkhangminhnguyen.ocboost/settingsChanged";
 
 @interface OCBoostRootListController : PSListController
 @end
